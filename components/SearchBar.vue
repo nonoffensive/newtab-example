@@ -2,8 +2,8 @@
 </style>
 
 <template>
-    <div class="flex flex-row items-stretch bg-white gap-4 px-2 py-2 shadow-md m-4 rounded-3xl">
-        <Icon name="i-lucide-search" size="24" />
+    <div class="flex flex-row items-stretch bg-white gap-8 px-4 py-4 shadow-md m-4 rounded">
+        <Icon name="i-lucide-search" size="24" class="text-blue-500" />
         <form 
             class="flex-grow"
             v-on:submit.prevent="(e) => submitSearchQuery(e)"

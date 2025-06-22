@@ -5,11 +5,15 @@
   --font-sans: 'Public Sans', sans-serif;
 }
 
-html {
-    
-}
-
 body {
     background-color: #eee;
     color: #222;
+}
+
+.justify-content {
+    justify-content: space-between;
+}
+
+.rounded {
+    border-radius: 999px;
 }
