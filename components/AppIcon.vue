@@ -3,71 +3,36 @@
 
 <template>
     <a
-        class="flex flex-col align-items-center"
-        :href="app.url"
+        class="flex flex-col gap-2 content-start text-center"
         rel="nofollow"
-        :aria-label="app.description"
-        :alt="app.description"
+        :href="url"
+        :aria-label="description"
+        :alt="description"
     >
-        <Icon :name="app.icon" />
-        <span>{{app.title}}</span>
+        <span class="flex flex-row flex-wrap content-center justify-center bg-white shadow-md w-20 h-20 rounded-xl">
+            <Icon :name="icon" size="44" class="align-self-center" />
+        </span>
+        <span>{{title}}</span>
     </a>
 </template>
 
 <script>
-const icons = {
-    facebook: {
-        title: 'Facebook',
-        icon: 'i-logos-facebook',
-        url: 'https://facebook.com'
-    },
-    youtube: {
-        title: 'Youtube',
-        icon: 'i-logos-youtube-icon',
-        url: 'https://youtube.com'
-    },
-    spotify: {
-        title: 'Spotify',
-        icon: 'i-logos-spotify-icon',
-        url: 'https://spotify.com'
-    },
-    dribbble: {
-        title: 'Dribble',
-        icon: 'i-logos-dribbble-icon',
-        url: 'https://dribbble.com'
-    },
-    paypal: {
-        title: 'PayPal',
-        icon: 'i-logos-paypal',
-        url: 'https://paypal.com'
-    }
-}
-
 export default {
-    props: {
-        link: {
-            type: String,
-            default: ''
-        }
-    },
+    props: ['title', 'icon', 'url'],
     setup (props) {
-        if (props.link && props.link in icons) {
+        if (props.title) {
             return {
-                app: {
-                    ...icons[props.link],
-                    description: `Navigate to ${icons[props.link].title}`
-                }
+                ...props,
+                description: `Navigate to ${props.title}`
             }
         }
 
         // Return Default Addition Icon
         return {
-            app: {
-                title: '',
-                icon: 'i-lucide-plus',
-                url: '',
-                description: 'Add New Navigation Link...'
-            }
+            title: '',
+            icon: 'i-lucide-plus',
+            url: '',
+            description: 'Add New Navigation Link...'
         }
     }
 }
