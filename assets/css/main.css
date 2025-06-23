@@ -10,6 +10,10 @@ body {
     color: #222;
 }
 
+.no-max-width {
+    max-width: none!important;
+}
+
 .justify-content {
     justify-content: space-between;
 }

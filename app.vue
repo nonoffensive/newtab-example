@@ -25,8 +25,6 @@ import NewFeed from './components/NewsFeed'
 
 
 <script>
-import { onMounted } from 'vue'
-
 export default {
     data () {
         return {
@@ -39,13 +37,13 @@ export default {
         // TODO: Setup tasks here
     },
     mounted() {
-        console.log('mounted', arguments)
-        console.log('mounted Context', this)
-
+        // Load Apps Here
         fetch('/api/apps').then(async (r) => {
             this.apps = await r.json()
-            console.log('APPS', this.apps)
         })
+    },
+    beforeUnmount() {
+        // TODO: Unmount tasks here
     }
 }
 </script>
