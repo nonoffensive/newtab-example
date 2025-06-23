@@ -48,7 +48,7 @@ export default {
             category: 'Home',
             news: [],
             related: [],
-            error: 'No internet connection'
+            error: ''
         }
     },
     mounted () {
@@ -62,7 +62,7 @@ export default {
             fetch(`/api/news?category=${category.toLowerCase()}`)
                 .then(async (r) => {
                     const feed = await r.json()
-                    this.related = feed.filter(article => !article.image_url)
+                    this.related = feed.filter(article => !article.image_url).slice(0,3)
                     this.news = feed.filter(article => article.image_url)
 
                     // For display purposes, if no articles were given to related, take some from news

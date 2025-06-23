@@ -10,10 +10,9 @@
         <div class="absolute top-0 w-full h-9/16 overflow-hidden bg-cover bg-center"
             :class="{'h-full': featured}"
             :style="{backgroundImage: `url(${article.image_url})`}">
-            <!-- <img :src="article.image_url" class="sm:w-full no-max-width" :class="{'max-sm:h-full sm:w-full': featured}"/> -->
             <span 
                 v-if="article.keywords && article.keywords.length > 0"
-                class="absolute top-1 left-2 text-white text-sm font-semibold opacity-60">
+                class="absolute top-1 left-2 text-white text-sm font-semibold opacity-70">
 
                 {{ article.keywords[0] }}
             </span>

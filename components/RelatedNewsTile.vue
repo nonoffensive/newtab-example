@@ -1,12 +1,11 @@
 <style></style>
 
 <template>
-    <div class="flex flex-col border-1 border-gray-300 rounded-xl px-4 py-3">
+    <div class="flex flex-col border-1 border-gray-300 rounded-xl px-4 py-3" :ref="listenForTileView">
         <h2 class="font-semibold text-cyan-600 text-lg mb-4">Related Stories</h2>
-        <div class="flex flex-col flex-grow col-auto gap-10">
+        <div class="flex flex-col flex-grow col-auto justify-start gap-4">
             <div v-for="article in articles"
                 class="cursor-pointer"
-                :ref="listenForArticleView"
                 v-on:click.prevent="() => navigateToArticle(article.link)"
             >
                 <div class="flex flex-row flex-grow flex-wrap w-full justify-content">
@@ -36,11 +35,11 @@ export default {
             console.log('tile_clicked', url)
             window.open(url, '_blank')
         },
-        listenForArticleView (el) {
+        listenForTileView (el) {
             if (el) {
                 observer = new IntersectionObserver((elements) => {
                     if (elements[0].intersectionRatio > 0) {
-                        console.log('tile_shown', this.article.link)
+                        console.log('tile_shown', 'related_articles', this.articles.map(a => a.link))
                     }
                 })
                 observer.observe(el)
