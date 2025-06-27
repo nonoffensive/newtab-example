@@ -1,7 +1,14 @@
-<style></style>
+<style>
+.first-col-second-row {
+    grid-row-start: 2;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+</style>
 
 <template>
-    <div class="flex flex-col border-1 border-gray-300 rounded-xl px-4 py-3" :ref="listenForTileView">
+    <div class="flex flex-col border-1 border-gray-300 rounded-xl px-4 py-3 first-col-second-row" :ref="listenForTileView">
         <h2 class="font-semibold text-cyan-600 text-lg mb-4">Related Stories</h2>
         <div class="flex flex-col flex-grow col-auto justify-start gap-4">
             <div v-for="article in articles"

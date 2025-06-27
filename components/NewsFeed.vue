@@ -24,15 +24,11 @@ import RelatedNewsTile from './NewsTile'
         </div>
         <div v-if="!error" class="grid grid-cols-1 lg:grid-cols-4 gap-6">
             <NewsTile
-                v-for="(article, index) in news.slice(0,3)"
+                v-for="(article, index) in news"
                 :article="article"
                 :featured="index === 0" />
     
             <RelatedNewsTile :articles="related" />
-
-            <NewsTile
-                v-for="(article, index) in news.slice(3)"
-                :article="article"/>
         </div>
         <div v-else class="w-full py-20 text-center">
             <span>{{ error }}</span>
