@@ -3,7 +3,7 @@
 
 <template>
     <a class="flex flex-col gap-2 content-start text-center"
-        rel="nofollow"
+        rel="nofollow noreferrer"
         :href="url"
         :aria-label="description"
         :alt="description">
@@ -15,24 +15,18 @@
     </a>
 </template>
 
-<script>
-export default {
-    props: ['title', 'icon', 'url'],
-    setup (props) {
-        if (props.title) {
-            return {
-                ...props,
-                description: `Navigate to ${props.title}`
-            }
-        }
-
-        // Return Default Addition Icon
-        return {
-            title: '',
-            icon: 'i-lucide-plus',
-            url: '',
-            description: 'Add New Navigation Link...'
-        }
-    }
+<script setup lang="ts">
+type Props = {
+    title?: string,
+    description?: string,
+    icon?: string,
+    url?: string
 }
+
+const props = defineProps<Props>()
+
+const title = props.title ?? '' 
+const description = props.title ? props.description??`Navigate to ${props.title}` : 'Add New Navigation Link...'
+const icon = props.icon ?? 'i-lucide-plus'
+const url = props.url ?? undefined
 </script>

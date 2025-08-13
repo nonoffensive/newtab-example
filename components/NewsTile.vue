@@ -4,7 +4,7 @@
     <div class="relative border-1 border-gray-300 h-80 rounded-xl overflow-hidden cursor-pointer"
         :class="{'lg:col-span-2': featured}"
         :data-article-url="article.link"
-        :ref="listenForArticleView"
+        ref="articleView"
         v-on:click.prevent="() => navigateToArticle(article.link)">
         
         <div class="absolute top-0 w-full h-9/16 overflow-hidden bg-cover bg-center"
@@ -32,29 +32,34 @@
     </div>
 </template>
 
-<script>
-let observer;
+<script setup lang="ts">
+import { tryOnMounted, tryOnBeforeUnmount, useIntersectionObserver } from '@vueuse/core';
+import type { ApiNewsArticleItem } from '~/types/api';
 
-export default {
-    props: ['article', 'featured'],
-    beforeUnmount () {
-        observer.disconnect()
-    },
-    methods: {
-        navigateToArticle (url) {
-            console.log('tile_clicked', url)
-            window.open(url, '_blank')
-        },
-        listenForArticleView (el) {
-            if (el) {
-                observer = new IntersectionObserver((elements) => {
-                    if (elements[0].intersectionRatio > 0) {
-                        console.log('tile_shown', this.article.link)
-                    }
-                })
-                observer.observe(el)
-            }
+type Props = {
+    article: ApiNewsArticleItem,
+    featured: boolean
+}
+
+const {article, featured} = defineProps<Props>()
+const articleView = useTemplateRef('articleView')
+const hasArticleBeenViewed = shallowRef(false)
+
+let observer = useIntersectionObserver(
+    articleView,
+    ([entry], element) => {
+        if (entry?.isIntersecting && !hasArticleBeenViewed.value) {
+            hasArticleBeenViewed.value = true
+            console.log('tile_shown', article.link)
         }
-    }
+    })
+
+tryOnBeforeUnmount(() => {
+    observer.stop()
+})
+
+function navigateToArticle (url: string) {
+    console.log('tile_clicked', url)
+    window.open(url, '_blank')
 }
 </script>

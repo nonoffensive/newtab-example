@@ -1,8 +1,8 @@
 // https://newsdata.io/api/1/latest?apikey=pub_eddc62c7905f4d7ca436763f336e79c8&q=entertainment&country=us&language=en&category=top
 
-import news from "~/assets/data/news"
+import news from "~/data/news"
 import { articleAge, articleSource } from "~/functions/news"
-
+import { ApiNewsArticleItem } from "~/types/api"
 
 export default defineEventHandler(async (event) => {
     // TODO: Configure 
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
                 ...article,
                 domain: articleSource(article),
                 age: articleAge(article)
-            }
+            } as ApiNewsArticleItem
         })
         return JSON.stringify(articles)
     }
