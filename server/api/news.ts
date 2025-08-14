@@ -1,4 +1,4 @@
-// https://newsdata.io/api/1/latest?apikey=pub_eddc62c7905f4d7ca436763f336e79c8&q=entertainment&country=us&language=en&category=top
+// https://newsdata.io/api/1/latest?apikey=pub_eddaaaaa&q=entertainment&country=us&language=en&category=top
 
 import news from "~/data/news"
 import { articleAge, articleSource } from "~/functions/news"

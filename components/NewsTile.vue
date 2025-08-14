@@ -5,7 +5,8 @@
         :class="{'lg:col-span-2': featured}"
         :data-article-url="article.link"
         ref="articleView"
-        v-on:click.prevent="() => navigateToArticle(article.link)">
+        v-on:click.prevent="navigateToArticle(article.link)"
+        tabindex="0">
         
         <div class="absolute top-0 w-full h-9/16 overflow-hidden bg-cover bg-center"
             :class="{'h-full': featured}"
@@ -33,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { tryOnMounted, tryOnBeforeUnmount, useIntersectionObserver } from '@vueuse/core';
+import { tryOnBeforeUnmount, useIntersectionObserver } from '@vueuse/core';
 import type { ApiNewsArticleItem } from '~/types/api';
 
 type Props = {
