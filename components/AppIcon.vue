@@ -2,7 +2,7 @@
 </style>
 
 <template>
-    <a class="flex flex-col gap-2 content-start text-center"
+    <a class="flex flex-col gap-2 content-start text-center hover:scale-110 transition-all duration-600 cursor-pointer"
         rel="nofollow noreferrer"
         :href="url"
         :aria-label="description"

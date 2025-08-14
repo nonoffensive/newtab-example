@@ -22,7 +22,7 @@ import RelatedNewsTile from './NewsTile'
             <div class="flex flex-row gap-4 lg:gap-7 overflow-y-auto">
                 <NuxtLink v-for="title, cat in categories"
                     tabindex="0"
-                    class="border-b-3 py-2 px-3 cursor-pointer transition-all duration-300 font-bold"
+                    class="border-b-3 py-2 px-3 cursor-pointer transition-all duration-300 font-bold hover:text-cyan-900"
                     :key="cat"
                     :class="{
                         'text-cyan-600 border-cyan-600': cat === category,
